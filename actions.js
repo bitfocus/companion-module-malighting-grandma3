@@ -98,5 +98,27 @@ module.exports = function (self) {
 				])
 			},
 		},
+		matricks: {
+			name: 'Select MAtricks',
+			options: [
+				{
+					type: 'textinput',
+					label: 'MAtrick Number',
+					id: 'matrick',
+					default: '1',
+					useVariables: true,
+				}
+			],
+			callback: async (event) => {
+				const matrick = await self.parseVariablesInString(event.options.matrick)
+
+				sendOscMessage("/cmd", [
+					{
+						type: 's',
+						value: 'SelectFixtures MAtricks ' + matrick,
+					}
+				])
+			},
+		},
 	})
 }
