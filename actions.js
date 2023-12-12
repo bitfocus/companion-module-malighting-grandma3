@@ -120,5 +120,27 @@ module.exports = function (self) {
 				])
 			},
 		},
+		sequence: {
+			name: 'Select Sequence',
+			options: [
+				{
+					type: 'textinput',
+					label: 'Sequence Number',
+					id: 'sequence',
+					default: '1',
+					useVariables: true,
+				}
+			],
+			callback: async (event) => {
+				const sequence = await self.parseVariablesInString(event.options.sequence)
+
+				sendOscMessage("/cmd", [
+					{
+						type: 's',
+						value: 'Select Sequence ' + sequence,
+					}
+				])
+			},
+		},
 	})
 }
