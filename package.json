@@ -1,6 +1,6 @@
 {
-	"name": "your-module-name",
-	"version": "0.1.0",
+	"name": "grand-ma-3-osc",
+	"version": "1.0.0",
 	"main": "main.js",
 	"scripts": {
 		"format": "prettier -w ."
@@ -8,7 +8,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bitfocus/companion-module-your-module-name.git"
+		"url": "git+https://github.com/blockiyt/companion-module-grandma3-osc.git"
 	},
 	"dependencies": {
 		"@companion-module/base": "~1.5.1"
