@@ -13,3 +13,4 @@ Connection to control your grandMA3 Software via OSC.
 - Call Plugins
 - Select Groups
 - Run Quick Keys
+- more coming...
