@@ -76,5 +76,27 @@ module.exports = function (self) {
 				])
 			},
 		},
+		macro: {
+			name: 'Call Macro',
+			options: [
+				{
+					type: 'textinput',
+					label: 'Macro Number',
+					id: 'macro',
+					default: '1',
+					useVariables: true,
+				}
+			],
+			callback: async (event) => {
+				const macro = await self.parseVariablesInString(event.options.macro)
+
+				sendOscMessage("/cmd", [
+					{
+						type: 's',
+						value: 'Go+ Macro ' + macro,
+					}
+				])
+			},
+		},
 	})
 }
