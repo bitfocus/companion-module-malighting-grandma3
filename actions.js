@@ -142,5 +142,77 @@ module.exports = function (self) {
 				])
 			},
 		},
+		atMenu: {
+			name: 'At Menu',
+			options: [
+				{
+					id: 'atmenu',
+					type: 'dropdown',
+					label: 'At Menu Item',
+					choices: [
+						{
+							id: 'At Full',
+							label: 'Full'
+						},
+						{
+							id: 'At Zero',
+							label: 'Zero'
+						},
+						{
+							id: 'At Default',
+							label: 'Default'
+						},
+						{
+							id: 'Cut Programmer',
+							label: 'Cut Programmer'
+						},
+						{
+							id: 'At Normal',
+							label: 'Normal'
+						},
+						{
+							id: 'Copy Programmer',
+							label: 'Copy Programmer'
+						},
+						{
+							id: 'On Selection',
+							label: 'On'
+						},
+						{
+							id: 'Paste Programmer',
+							label: 'Paste Programmer'
+						},
+						{
+							id: 'Off Selection',
+							label: 'Off'
+						},
+						{
+							id: 'At Release',
+							label: 'Release'
+						},
+						{
+							id: 'Delete Programmer',
+							label: 'Delete Steps'
+						},
+						{
+							id: 'At Remove',
+							label: 'Remove'
+						},
+					],
+				}
+			],
+			callback: async (event) => {
+				const command = await self.parseVariablesInString(event.options.atmenu)
+
+				self.log('debug', `List ${command}`)
+
+				sendOscMessage("/cmd", [
+					{
+						type: 's',
+						value: command
+					}
+				])
+			},
+		},
 	})
 }
