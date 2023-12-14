@@ -14,3 +14,4 @@ Connection to control your grandMA3 Software via OSC.
 - Select Groups
 - Run Quick Keys
 - At Menu
+- Run Commands

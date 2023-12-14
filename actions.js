@@ -214,5 +214,27 @@ module.exports = function (self) {
 				])
 			},
 		},
+		command: {
+			name: 'Run Command',
+			options: [
+				{
+					type: 'textinput',
+					label: 'Command',
+					id: 'command',
+					default: 'SelectFixtures Group 1',
+					useVariables: true,
+				}
+			],
+			callback: async (event) => {
+				const command = await self.parseVariablesInString(event.options.command)
+
+				sendOscMessage("/cmd", [
+					{
+						type: 's',
+						value: command,
+					}
+				])
+			},
+		},
 	})
 }
