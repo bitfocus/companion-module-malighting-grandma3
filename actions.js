@@ -142,7 +142,7 @@ module.exports = function (self) {
 				])
 			},
 		},
-		atMenu: {
+		atmenu: {
 			name: 'At Menu',
 			options: [
 				{
