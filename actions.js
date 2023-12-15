@@ -6,7 +6,7 @@ module.exports = function (self) {
 	}
 
 	self.setActionDefinitions({
-		quick_keys: {
+		quickkey: {
 			name: 'Call QuickKey',
 			options: [
 				{
@@ -98,7 +98,7 @@ module.exports = function (self) {
 				])
 			},
 		},
-		matricks: {
+		matrick: {
 			name: 'Select MAtricks',
 			options: [
 				{
