@@ -7,7 +7,7 @@ module.exports = function (self) {
 
 	self.setActionDefinitions({
 		quick_keys: {
-			name: 'Run Quick Keys',
+			name: 'Call QuickKey',
 			options: [
 				{
 					type: 'textinput',
