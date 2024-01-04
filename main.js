@@ -40,6 +40,12 @@ class ModuleInstance extends InstanceBase {
 				width: 4,
 				regex: Regex.PORT,
 			},
+			{
+				type: 'textinput',
+				id: 'prefix',
+				label: 'Console OSC Prefix',
+				value: '/gma3',
+			},
 		]
 	}
 
