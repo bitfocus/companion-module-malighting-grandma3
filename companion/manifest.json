@@ -1,6 +1,6 @@
 {
-	"id": "grand-ma-3-osc",
-	"name": "grand-ma-3-osc",
+	"id": "malighting-grandma3",
+	"name": "malighting-grandma3",
 	"shortname": "GrandMA3",
 	"description": "Control GrandMA3 via OSC",
 	"version": "1.0.0",
@@ -22,5 +22,5 @@
 	"legacyIds": [],
 	"manufacturer": "MA Lighting",
 	"products": ["GrandMA3"],
-	"keywords": []
+	"keywords": ["Lighting"]
 }
