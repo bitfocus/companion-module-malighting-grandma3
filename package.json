@@ -8,7 +8,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bitfocus/companion-module-grandma3-osc.git"
+		"url": "git+https://github.com/bitfocus/companion-module-malighting-grandma3.git"
 	},
 	"dependencies": {
 		"@companion-module/base": "~1.5.1"
