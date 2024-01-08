@@ -2,7 +2,13 @@ module.exports = function (self) {
 	const sendOscMessage = (path, args) => {
 		self.log('debug', `Sending OSC ${self.config.host}:${self.config.port} ${path}`)
 		self.log('debug', `Sending Args ${JSON.stringify(args)}`)
-		self.oscSend(self.config.host, self.config.port, self.config.prefix + path, args)
+
+		let customPath = path
+		if(self.config.prefix) {
+			customPath = "/" + self.config.prefix + path
+			self.log('debug', `Sending Custom Path ${customPath}`)
+		}
+		self.oscSend(self.config.host, self.config.port, customPath, args)
 	}
 
 	self.setActionDefinitions({
