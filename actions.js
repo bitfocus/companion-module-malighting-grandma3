@@ -15,12 +15,12 @@ module.exports = function (self) {
 					id: 'quickKey',
 					default: '1',
 					useVariables: true,
-				}
+				},
 			],
 			callback: async (event) => {
 				const quickKey = await self.parseVariablesInString(event.options.quickKey)
 
-				sendOscMessage("/13.13.1.9." + quickKey, [
+				sendOscMessage('/13.13.1.9.' + quickKey, [
 					{
 						type: 's',
 						value: 'flash',
@@ -28,7 +28,7 @@ module.exports = function (self) {
 					{
 						type: 'i',
 						value: 1,
-					}
+					},
 				])
 			},
 		},
@@ -41,16 +41,16 @@ module.exports = function (self) {
 					id: 'group',
 					default: '1',
 					useVariables: true,
-				}
+				},
 			],
 			callback: async (event) => {
 				const group = await self.parseVariablesInString(event.options.group)
 
-				sendOscMessage("/cmd", [
+				sendOscMessage('/cmd', [
 					{
 						type: 's',
 						value: 'SelectFixtures Group ' + group,
-					}
+					},
 				])
 			},
 		},
@@ -63,16 +63,16 @@ module.exports = function (self) {
 					id: 'plugin',
 					default: '1',
 					useVariables: true,
-				}
+				},
 			],
 			callback: async (event) => {
 				const plugin = await self.parseVariablesInString(event.options.plugin)
 
-				sendOscMessage("/cmd", [
+				sendOscMessage('/cmd', [
 					{
 						type: 's',
 						value: 'Call Plugin ' + plugin,
-					}
+					},
 				])
 			},
 		},
@@ -85,16 +85,16 @@ module.exports = function (self) {
 					id: 'macro',
 					default: '1',
 					useVariables: true,
-				}
+				},
 			],
 			callback: async (event) => {
 				const macro = await self.parseVariablesInString(event.options.macro)
 
-				sendOscMessage("/cmd", [
+				sendOscMessage('/cmd', [
 					{
 						type: 's',
 						value: 'Go+ Macro ' + macro,
-					}
+					},
 				])
 			},
 		},
@@ -107,16 +107,16 @@ module.exports = function (self) {
 					id: 'matrick',
 					default: '1',
 					useVariables: true,
-				}
+				},
 			],
 			callback: async (event) => {
 				const matrick = await self.parseVariablesInString(event.options.matrick)
 
-				sendOscMessage("/cmd", [
+				sendOscMessage('/cmd', [
 					{
 						type: 's',
 						value: 'SelectFixtures MAtricks ' + matrick,
-					}
+					},
 				])
 			},
 		},
@@ -129,16 +129,16 @@ module.exports = function (self) {
 					id: 'sequence',
 					default: '1',
 					useVariables: true,
-				}
+				},
 			],
 			callback: async (event) => {
 				const sequence = await self.parseVariablesInString(event.options.sequence)
 
-				sendOscMessage("/cmd", [
+				sendOscMessage('/cmd', [
 					{
 						type: 's',
 						value: 'Select Sequence ' + sequence,
-					}
+					},
 				])
 			},
 		},
@@ -152,65 +152,65 @@ module.exports = function (self) {
 					choices: [
 						{
 							id: 'At Full',
-							label: 'Full'
+							label: 'Full',
 						},
 						{
 							id: 'At Zero',
-							label: 'Zero'
+							label: 'Zero',
 						},
 						{
 							id: 'At Default',
-							label: 'Default'
+							label: 'Default',
 						},
 						{
 							id: 'Cut Programmer',
-							label: 'Cut Programmer'
+							label: 'Cut Programmer',
 						},
 						{
 							id: 'At Normal',
-							label: 'Normal'
+							label: 'Normal',
 						},
 						{
 							id: 'Copy Programmer',
-							label: 'Copy Programmer'
+							label: 'Copy Programmer',
 						},
 						{
 							id: 'On Selection',
-							label: 'On'
+							label: 'On',
 						},
 						{
 							id: 'Paste Programmer',
-							label: 'Paste Programmer'
+							label: 'Paste Programmer',
 						},
 						{
 							id: 'Off Selection',
-							label: 'Off'
+							label: 'Off',
 						},
 						{
 							id: 'At Release',
-							label: 'Release'
+							label: 'Release',
 						},
 						{
 							id: 'Delete Programmer',
-							label: 'Delete Steps'
+							label: 'Delete Steps',
 						},
 						{
 							id: 'At Remove',
-							label: 'Remove'
+							label: 'Remove',
 						},
 					],
-				}
+				},
 			],
 			callback: async (event) => {
 				const command = await self.parseVariablesInString(event.options.atmenu)
 
 				self.log('debug', `List ${command}`)
 
-				sendOscMessage("/cmd", [
+				sendOscMessage('/cmd', [
 					{
 						type: 's',
-						value: command
-					}
+						value: command,
+					},
 				])
 			},
 		},
@@ -223,16 +223,16 @@ module.exports = function (self) {
 					id: 'command',
 					default: 'SelectFixtures Group 1',
 					useVariables: true,
-				}
+				},
 			],
 			callback: async (event) => {
 				const command = await self.parseVariablesInString(event.options.command)
 
-				sendOscMessage("/cmd", [
+				sendOscMessage('/cmd', [
 					{
 						type: 's',
 						value: command,
-					}
+					},
 				])
 			},
 		},
