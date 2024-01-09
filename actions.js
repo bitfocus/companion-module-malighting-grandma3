@@ -20,7 +20,6 @@ module.exports = function (self) {
 					label: 'Quick Key Number',
 					id: 'quickKey',
 					default: '1',
-					useVariables: true,
 				},
 			],
 			callback: async (event) => {
@@ -46,7 +45,6 @@ module.exports = function (self) {
 					label: 'Group Number',
 					id: 'group',
 					default: '1',
-					useVariables: true,
 				},
 			],
 			callback: async (event) => {
@@ -68,7 +66,6 @@ module.exports = function (self) {
 					label: 'Plugin Number',
 					id: 'plugin',
 					default: '1',
-					useVariables: true,
 				},
 			],
 			callback: async (event) => {
@@ -90,7 +87,6 @@ module.exports = function (self) {
 					label: 'Macro Number',
 					id: 'macro',
 					default: '1',
-					useVariables: true,
 				},
 			],
 			callback: async (event) => {
@@ -112,7 +108,6 @@ module.exports = function (self) {
 					label: 'MAtrick Number',
 					id: 'matrick',
 					default: '1',
-					useVariables: true,
 				},
 			],
 			callback: async (event) => {
@@ -134,7 +129,6 @@ module.exports = function (self) {
 					label: 'Sequence Number',
 					id: 'sequence',
 					default: '1',
-					useVariables: true,
 				},
 			],
 			callback: async (event) => {
@@ -228,7 +222,6 @@ module.exports = function (self) {
 					label: 'Command',
 					id: 'command',
 					default: 'SelectFixtures Group 1',
-					useVariables: true,
 				},
 			],
 			callback: async (event) => {
