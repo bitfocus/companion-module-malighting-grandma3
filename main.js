@@ -32,6 +32,7 @@ class ModuleInstance extends InstanceBase {
 				label: 'Console IP',
 				width: 8,
 				regex: Regex.IP,
+				value: '127.0.0.1',
 			},
 			{
 				type: 'textinput',
@@ -39,12 +40,13 @@ class ModuleInstance extends InstanceBase {
 				label: 'Console OSC Port',
 				width: 4,
 				regex: Regex.PORT,
+				value: 8000,
 			},
 			{
 				type: 'textinput',
 				id: 'prefix',
 				label: 'Console OSC Prefix',
-				value: '/gma3',
+				value: 'gma3',
 			},
 		]
 	}

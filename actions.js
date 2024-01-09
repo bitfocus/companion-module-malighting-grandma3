@@ -4,8 +4,8 @@ module.exports = function (self) {
 		self.log('debug', `Sending Args ${JSON.stringify(args)}`)
 
 		let customPath = path
-		if(self.config.prefix) {
-			customPath = "/" + self.config.prefix + path
+		if (self.config.prefix) {
+			customPath = '/' + self.config.prefix + path
 			self.log('debug', `Sending Custom Path ${customPath}`)
 		}
 		self.oscSend(self.config.host, self.config.port, customPath, args)
