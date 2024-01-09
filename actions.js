@@ -235,13 +235,14 @@ module.exports = function (self) {
 				])
 			},
 		},
-		button_on: {
+		button: {
 			name: 'Turn Button on',
 			options: [
 				{
 					id: 'page',
 					type: 'dropdown',
 					label: 'Page',
+					default: '1',
 					choices: [
 						{
 							id: '1',
@@ -270,72 +271,46 @@ module.exports = function (self) {
 					type: 'number',
 					label: 'Button',
 					default: '201',
-				}
-			],
-			callback: async (event) => {
-				const button_number = await self.parseVariablesInString(event.options.button_number)
-				const page = await self.parseVariablesInString(event.options.page)
-
-				self.log('debug', `button ${button_number}`)
-				self.log('debug', `page ${page}`)
-
-				sendOscMessage('/Page' + page + '/Key' + button_number, [
-					{
-						type: 'T',
-					},
-				])
-			},
-		},
-		button_off: {
-			name: 'Turn button off',
-			options: [
+				},
 				{
-					id: 'page',
+					id: 'button_state',
 					type: 'dropdown',
-					label: 'Page',
+					label: 'Button State',
+					default: 'push',
 					choices: [
 						{
-							id: '1',
-							label: 'Page 1',
+							id: 'push',
+							label: 'Push',
 						},
 						{
-							id: '2',
-							label: 'Page 2',
-						},
-						{
-							id: '3',
-							label: 'Page 3',
-						},
-						{
-							id: '4',
-							label: 'Page 4',
-						},
-						{
-							id: '5',
-							label: 'Page 5',
+							id: 'release',
+							label: 'Release',
 						},
 					],
 				},
-				{
-					id: 'button_number',
-					type: 'number',
-					label: 'Button',
-					default: '201',
-				}
 			],
 			callback: async (event) => {
 				const button_number = await self.parseVariablesInString(event.options.button_number)
+				const button_state = await self.parseVariablesInString(event.options.button_state)
 				const page = await self.parseVariablesInString(event.options.page)
 
 				self.log('debug', `button ${button_number}`)
 				self.log('debug', `page ${page}`)
 
-				sendOscMessage('/Page' + page + '/Key' + button_number, [
-					{
-						type: 'i',
-						value: 0,
-					},
-				])
+				if(button_state === 'push') {
+					sendOscMessage('/Page' + page + '/Key' + button_number, [
+						{
+							type: 'T',
+						},
+					])
+				} else {
+					sendOscMessage('/Page' + page + '/Key' + button_number, [
+						{
+							type: 'i',
+							value: 0,
+						},
+					])
+				}
 			},
 		},
 	})
