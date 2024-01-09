@@ -18,3 +18,4 @@ Connection to control your grandMA3 Software via OSC.
 - Run Quick Keys
 - At Menu
 - Run Commands
+- Toggle Executor Buttons (100/200/300/400)
