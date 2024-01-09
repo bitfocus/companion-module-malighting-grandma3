@@ -12,20 +12,22 @@ module.exports = function (self) {
 	}
 
 	self.setActionDefinitions({
-		quickkey: {
-			name: 'Call QuickKey',
+		quickey: {
+			name: 'Select Quickey',
 			options: [
 				{
-					type: 'textinput',
-					label: 'Quick Key Number',
-					id: 'quickKey',
-					default: '1',
+					type: 'number',
+					label: 'Quickey Number',
+					id: 'quickey',
+					default: 1,
 				},
 			],
 			callback: async (event) => {
-				const quickKey = await self.parseVariablesInString(event.options.quickKey)
+				const quickey = await self.parseVariablesInString(event.options.quickey)
 
-				sendOscMessage('/13.13.1.9.' + quickKey, [
+				self.log('debug', `Quickey ${quickey}`)
+
+				sendOscMessage('/13.13.1.9.' + quickey, [
 					{
 						type: 's',
 						value: 'flash',
@@ -41,14 +43,16 @@ module.exports = function (self) {
 			name: 'Select Group',
 			options: [
 				{
-					type: 'textinput',
+					type: 'number',
 					label: 'Group Number',
 					id: 'group',
-					default: '1',
+					default: 1,
 				},
 			],
 			callback: async (event) => {
 				const group = await self.parseVariablesInString(event.options.group)
+
+				self.log('debug', `Group ${group}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -58,60 +62,20 @@ module.exports = function (self) {
 				])
 			},
 		},
-		plugin: {
-			name: 'Call Plugins',
-			options: [
-				{
-					type: 'textinput',
-					label: 'Plugin Number',
-					id: 'plugin',
-					default: '1',
-				},
-			],
-			callback: async (event) => {
-				const plugin = await self.parseVariablesInString(event.options.plugin)
-
-				sendOscMessage('/cmd', [
-					{
-						type: 's',
-						value: 'Call Plugin ' + plugin,
-					},
-				])
-			},
-		},
-		macro: {
-			name: 'Call Macro',
-			options: [
-				{
-					type: 'textinput',
-					label: 'Macro Number',
-					id: 'macro',
-					default: '1',
-				},
-			],
-			callback: async (event) => {
-				const macro = await self.parseVariablesInString(event.options.macro)
-
-				sendOscMessage('/cmd', [
-					{
-						type: 's',
-						value: 'Go+ Macro ' + macro,
-					},
-				])
-			},
-		},
 		matrick: {
-			name: 'Select MAtricks',
+			name: 'Select MAtrick',
 			options: [
 				{
-					type: 'textinput',
+					type: 'number',
 					label: 'MAtrick Number',
 					id: 'matrick',
-					default: '1',
+					default: 1,
 				},
 			],
 			callback: async (event) => {
 				const matrick = await self.parseVariablesInString(event.options.matrick)
+
+				self.log('debug', `MAtrick ${matrick}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -125,19 +89,67 @@ module.exports = function (self) {
 			name: 'Select Sequence',
 			options: [
 				{
-					type: 'textinput',
+					type: 'number',
 					label: 'Sequence Number',
 					id: 'sequence',
-					default: '1',
+					default: 1,
 				},
 			],
 			callback: async (event) => {
 				const sequence = await self.parseVariablesInString(event.options.sequence)
 
+				self.log('debug', `Sequence ${sequence}`)
+
 				sendOscMessage('/cmd', [
 					{
 						type: 's',
 						value: 'Select Sequence ' + sequence,
+					},
+				])
+			},
+		},
+		plugin: {
+			name: 'Call Plugin',
+			options: [
+				{
+					type: 'number',
+					label: 'Plugin Number',
+					id: 'plugin',
+					default: 1,
+				},
+			],
+			callback: async (event) => {
+				const plugin = await self.parseVariablesInString(event.options.plugin)
+
+				self.log('debug', `Plugin ${plugin}`)
+
+				sendOscMessage('/cmd', [
+					{
+						type: 's',
+						value: 'Call Plugin ' + plugin,
+					},
+				])
+			},
+		},
+		macro: {
+			name: 'Call Macro',
+			options: [
+				{
+					type: 'number',
+					label: 'Macro Number',
+					id: 'macro',
+					default: 1,
+				},
+			],
+			callback: async (event) => {
+				const macro = await self.parseVariablesInString(event.options.macro)
+
+				self.log('debug', `Macro ${macro}`)
+
+				sendOscMessage('/cmd', [
+					{
+						type: 's',
+						value: 'Go+ Macro ' + macro,
 					},
 				])
 			},
@@ -149,6 +161,7 @@ module.exports = function (self) {
 					id: 'atmenu',
 					type: 'dropdown',
 					label: 'At Menu Item',
+					default: 'At Full',
 					choices: [
 						{
 							id: 'At Full',
@@ -204,7 +217,7 @@ module.exports = function (self) {
 			callback: async (event) => {
 				const command = await self.parseVariablesInString(event.options.atmenu)
 
-				self.log('debug', `List ${command}`)
+				self.log('debug', `At Menu ${command}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -227,6 +240,8 @@ module.exports = function (self) {
 			callback: async (event) => {
 				const command = await self.parseVariablesInString(event.options.command)
 
+				self.log('debug', `Command ${command}`)
+
 				sendOscMessage('/cmd', [
 					{
 						type: 's',
@@ -235,8 +250,8 @@ module.exports = function (self) {
 				])
 			},
 		},
-		button: {
-			name: 'Turn Button on',
+		exec_button: {
+			name: 'Executor Button',
 			options: [
 				{
 					id: 'page',
@@ -270,7 +285,7 @@ module.exports = function (self) {
 					id: 'button_number',
 					type: 'number',
 					label: 'Button',
-					default: '201',
+					default: 201,
 				},
 				{
 					id: 'button_state',
@@ -294,10 +309,9 @@ module.exports = function (self) {
 				const button_state = await self.parseVariablesInString(event.options.button_state)
 				const page = await self.parseVariablesInString(event.options.page)
 
-				self.log('debug', `button ${button_number}`)
-				self.log('debug', `page ${page}`)
+				self.log('debug', `Executor Button ${button_number}: ${button_state} on page ${page}`)
 
-				if(button_state === 'push') {
+				if (button_state === 'push') {
 					sendOscMessage('/Page' + page + '/Key' + button_number, [
 						{
 							type: 'T',
