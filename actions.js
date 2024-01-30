@@ -21,22 +21,52 @@ module.exports = function (self) {
 					id: 'quickey',
 					default: 1,
 				},
+				{
+					id: 'button_state',
+					type: 'dropdown',
+					label: 'Button State',
+					default: 'press',
+					choices: [
+						{
+							id: 'press',
+							label: 'Press',
+						},
+						{
+							id: 'release',
+							label: 'Release',
+						},
+					],
+				},
 			],
 			callback: async (event) => {
+				const button_state = await self.parseVariablesInString(event.options.button_state)
 				const quickey = await self.parseVariablesInString(event.options.quickey)
 
 				self.log('debug', `Quickey ${quickey}`)
 
-				sendOscMessage('/13.13.1.9.' + quickey, [
-					{
-						type: 's',
-						value: 'flash',
-					},
-					{
-						type: 'i',
-						value: 1,
-					},
-				])
+				if (button_state === 'press') {
+					sendOscMessage('/13.13.1.9.' + quickey, [
+						{
+							type: 's',
+							value: 'Go+',
+						},
+						{
+							type: 'i',
+							value: 1,
+						},
+					])
+				} else {
+					sendOscMessage('/13.13.1.9.' + quickey, [
+						{
+							type: 's',
+							value: 'Go+',
+						},
+						{
+							type: 'i',
+							value: 0,
+						},
+					])
+				}
 			},
 		},
 		group: {
