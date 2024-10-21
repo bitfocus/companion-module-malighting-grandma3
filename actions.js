@@ -105,7 +105,7 @@ module.exports = function (self) {
 			},
 		},
 		matrick: {
-			name: 'Select MAtrick',
+			name: 'Select MAtrick via number',
 			options: [
 				{
 					type: 'number',
@@ -117,7 +117,7 @@ module.exports = function (self) {
 			callback: async (event) => {
 				const matrick = await self.parseVariablesInString(event.options.matrick)
 
-				self.log('debug', `MAtrick ${matrick}`)
+				self.log('debug', `MAtrick via number ${matrick}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -127,12 +127,35 @@ module.exports = function (self) {
 				])
 			},
 		},
+		matrick_name: {
+			name: 'Select MAtrick via name',
+			options: [
+				{
+					type: 'textinput',
+					label: 'MAtrick Name',
+					id: 'matrick',
+					default: "Odd",
+				},
+			],
+			callback: async (event) => {
+				const matrick = await self.parseVariablesInString(event.options.matrick)
+
+				self.log('debug', `MAtrick via name ${matrick}`)
+
+				sendOscMessage('/cmd', [
+					{
+						type: 's',
+						value: 'SelectFixtures MAtricks "' + matrick + '"',
+					},
+				])
+			},
+		},
 		sequence: {
-			name: 'Select Sequence',
+			name: 'Select Sequence via number',
 			options: [
 				{
 					type: 'number',
-					label: 'Sequence Number',
+					label: 'Sequence Number via number',
 					id: 'sequence',
 					default: 1,
 				},
@@ -146,6 +169,29 @@ module.exports = function (self) {
 					{
 						type: 's',
 						value: 'Select Sequence ' + sequence,
+					},
+				])
+			},
+		},
+		sequence_name: {
+			name: 'Select Sequence via name',
+			options: [
+				{
+					type: 'textinput',
+					label: 'Sequence Name',
+					id: 'sequence',
+					default: "Random Strobe",
+				},
+			],
+			callback: async (event) => {
+				const sequence = await self.parseVariablesInString(event.options.sequence)
+
+				self.log('debug', `Sequence via name ${sequence}`)
+
+				sendOscMessage('/cmd', [
+					{
+						type: 's',
+						value: 'Select Sequence "' + sequence + '"',
 					},
 				])
 			},
