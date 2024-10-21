@@ -197,7 +197,7 @@ module.exports = function (self) {
 			},
 		},
 		plugin: {
-			name: 'Call Plugin',
+			name: 'Call Plugin via number',
 			options: [
 				{
 					type: 'number',
@@ -209,7 +209,7 @@ module.exports = function (self) {
 			callback: async (event) => {
 				const plugin = await self.parseVariablesInString(event.options.plugin)
 
-				self.log('debug', `Plugin ${plugin}`)
+				self.log('debug', `Plugin via number ${plugin}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -219,8 +219,31 @@ module.exports = function (self) {
 				])
 			},
 		},
+		plugin_name: {
+			name: 'Call Plugin via name',
+			options: [
+				{
+					type: 'textinput',
+					label: 'Plugin Name',
+					id: 'plugin',
+					default: "Cool Plugin 123",
+				},
+			],
+			callback: async (event) => {
+				const plugin = await self.parseVariablesInString(event.options.plugin)
+
+				self.log('debug', `Plugin via name ${plugin}`)
+
+				sendOscMessage('/cmd', [
+					{
+						type: 's',
+						value: 'Call Plugin "' + plugin + '"',
+					},
+				])
+			},
+		},
 		macro: {
-			name: 'Call Macro',
+			name: 'Call Macro via number',
 			options: [
 				{
 					type: 'number',
@@ -232,12 +255,35 @@ module.exports = function (self) {
 			callback: async (event) => {
 				const macro = await self.parseVariablesInString(event.options.macro)
 
-				self.log('debug', `Macro ${macro}`)
+				self.log('debug', `Macro via number ${macro}`)
 
 				sendOscMessage('/cmd', [
 					{
 						type: 's',
 						value: 'Go+ Macro ' + macro,
+					},
+				])
+			},
+		},
+		macro_name: {
+			name: 'Call Macro via name',
+			options: [
+				{
+					type: 'textinput',
+					label: 'Macro Name',
+					id: 'macro',
+					default: "Cool Macro 456",
+				},
+			],
+			callback: async (event) => {
+				const macro = await self.parseVariablesInString(event.options.macro)
+
+				self.log('debug', `Macro via name ${macro}`)
+
+				sendOscMessage('/cmd', [
+					{
+						type: 's',
+						value: 'Go+ Macro "' + macro + '"',
 					},
 				])
 			},
