@@ -59,7 +59,7 @@ module.exports = function (self) {
 			}
 		},
 		group: {
-			name: 'Select Group',
+			name: 'Select Group via number',
 			options: [
 				{
 					type: 'number',
@@ -71,12 +71,35 @@ module.exports = function (self) {
 			callback: async (event) => {
 				const group = await self.parseVariablesInString(event.options.group)
 
-				self.log('debug', `Group ${group}`)
+				self.log('debug', `Group via number ${group}`)
 
 				sendOscMessage('/cmd', [
 					{
 						type: 's',
 						value: 'SelectFixtures Group ' + group,
+					},
+				])
+			},
+		},
+		group_name: {
+			name: 'Select Group via name',
+			options: [
+				{
+					type: 'textinput',
+					label: 'Group Name',
+					id: 'group',
+					default: "Front Lights",
+				},
+			],
+			callback: async (event) => {
+				const group = await self.parseVariablesInString(event.options.group)
+
+				self.log('debug', `Group via name ${group}`)
+
+				sendOscMessage('/cmd', [
+					{
+						type: 's',
+						value: 'SelectFixtures Group "' + group + '"',
 					},
 				])
 			},
