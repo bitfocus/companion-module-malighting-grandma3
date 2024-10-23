@@ -1,9 +1,17 @@
 {
 	"name": "malighting-grandma3",
-	"version": "1.0.3",
-	"main": "main.js",
+	"version": "1.1.0",
+	"main": "dist/main.js",
+	"type": "module",
 	"scripts": {
-		"format": "prettier -w ."
+		"postinstall": "husky",
+		"format": "prettier -w .",
+		"package": "yarn build && companion-module-build",
+		"build": "rimraf dist && yarn build:main",
+		"build:main": "tsc -p tsconfig.build.json",
+		"dev": "tsc -p tsconfig.build.json --watch",
+		"lint:raw": "eslint",
+		"lint": "yarn lint:raw ."
 	},
 	"license": "MIT",
 	"repository": {
@@ -11,10 +19,26 @@
 		"url": "git+https://github.com/bitfocus/companion-module-malighting-grandma3.git"
 	},
 	"dependencies": {
-		"@companion-module/base": "~1.7.0"
+		"@companion-module/base": "~1.11.0"
 	},
 	"devDependencies": {
-		"@companion-module/tools": "^1.4.2"
+		"@companion-module/tools": "^2.1.0",
+		"@types/node": "^22.6.1",
+		"eslint": "^9.11.1",
+		"husky": "^9.1.6",
+		"lint-staged": "^15.2.10",
+		"prettier": "^3.3.3",
+		"typescript": "~5.5.4",
+		"typescript-eslint": "^8.7.0"
 	},
-	"prettier": "@companion-module/tools/.prettierrc.json"
+	"prettier": "@companion-module/tools/.prettierrc.json",
+	"lint-staged": {
+		"*.{css,json,md,scss}": [
+			"prettier --write"
+		],
+		"*.{ts,tsx,js,jsx}": [
+			"yarn lint:raw --fix"
+		]
+	},
+	"packageManager": "yarn@4.4.1"
 }

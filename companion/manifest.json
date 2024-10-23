@@ -1,9 +1,9 @@
 {
 	"id": "malighting-grandma3",
 	"name": "malighting-grandma3",
-	"shortname": "GrandMA3",
+	"shortname": "GrandMA3-ts",
 	"description": "Control GrandMA3 via OSC",
-	"version": "1.0.3",
+	"version": "1.1.0",
 	"license": "MIT",
 	"repository": "git+https://github.com/bitfocus/companion-module-malighting-grandma3.git",
 	"bugs": "https://github.com/bitfocus/companion-module-malighting-grandma3/issues",
@@ -17,7 +17,7 @@
 		"type": "node18",
 		"api": "nodejs-ipc",
 		"apiVersion": "0.0.0",
-		"entrypoint": "../main.js"
+		"entrypoint": "../dist/main.js"
 	},
 	"legacyIds": ["grandma3-osc"],
 	"manufacturer": "MA Lighting",

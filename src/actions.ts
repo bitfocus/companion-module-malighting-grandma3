@@ -1,5 +1,7 @@
-module.exports = function (self) {
-	const sendOscMessage = (path, args) => {
+import type { ModuleInstance } from './main.js'
+
+export function UpdateActions(self: ModuleInstance): void {
+	const sendOscMessage = (path: any, args: any) => {
 		self.log('debug', `Sending OSC ${self.config.host}:${self.config.port} ${path}`)
 		self.log('debug', `Sending Args ${JSON.stringify(args)}`)
 
@@ -19,11 +21,13 @@ module.exports = function (self) {
 					type: 'number',
 					label: 'Quickey Number',
 					id: 'quickey',
+					min: 1,
+					max: 9999,
 					default: 1,
-				}
+				},
 			],
 			callback: async (event) => {
-				const quickey = await self.parseVariablesInString(event.options.quickey)
+				const quickey = event.options.quickey
 
 				self.log('debug', `Quickey via Number ${quickey}`)
 
@@ -31,7 +35,7 @@ module.exports = function (self) {
 					{
 						type: 's',
 						value: 'Quickey ' + quickey,
-					}
+					},
 				])
 			},
 		},
@@ -42,11 +46,11 @@ module.exports = function (self) {
 					type: 'textinput',
 					label: 'Quickey Name',
 					id: 'quickey',
-					default: "OOPS",
-				}
+					default: 'OOPS',
+				},
 			],
 			callback: async (event) => {
-				const quickey = await self.parseVariablesInString(event.options.quickey)
+				const quickey = event.options.quickey
 
 				self.log('debug', `Quickey via Name ${quickey}`)
 
@@ -54,9 +58,9 @@ module.exports = function (self) {
 					{
 						type: 's',
 						value: 'Quickey "' + quickey + '"',
-					}
+					},
 				])
-			}
+			},
 		},
 		group: {
 			name: 'Select Group via number',
@@ -65,11 +69,13 @@ module.exports = function (self) {
 					type: 'number',
 					label: 'Group Number',
 					id: 'group',
+					min: 1,
+					max: 9999,
 					default: 1,
 				},
 			],
 			callback: async (event) => {
-				const group = await self.parseVariablesInString(event.options.group)
+				const group = event.options.group
 
 				self.log('debug', `Group via number ${group}`)
 
@@ -88,11 +94,11 @@ module.exports = function (self) {
 					type: 'textinput',
 					label: 'Group Name',
 					id: 'group',
-					default: "Front Lights",
+					default: 'Front Lights',
 				},
 			],
 			callback: async (event) => {
-				const group = await self.parseVariablesInString(event.options.group)
+				const group = event.options.group
 
 				self.log('debug', `Group via name ${group}`)
 
@@ -111,11 +117,13 @@ module.exports = function (self) {
 					type: 'number',
 					label: 'MAtrick Number',
 					id: 'matrick',
+					min: 1,
+					max: 9999,
 					default: 1,
 				},
 			],
 			callback: async (event) => {
-				const matrick = await self.parseVariablesInString(event.options.matrick)
+				const matrick = event.options.matrick
 
 				self.log('debug', `MAtrick via number ${matrick}`)
 
@@ -134,11 +142,11 @@ module.exports = function (self) {
 					type: 'textinput',
 					label: 'MAtrick Name',
 					id: 'matrick',
-					default: "Odd",
+					default: 'Odd',
 				},
 			],
 			callback: async (event) => {
-				const matrick = await self.parseVariablesInString(event.options.matrick)
+				const matrick = event.options.matrick
 
 				self.log('debug', `MAtrick via name ${matrick}`)
 
@@ -157,11 +165,13 @@ module.exports = function (self) {
 					type: 'number',
 					label: 'Sequence Number via number',
 					id: 'sequence',
+					min: 1,
+					max: 9999,
 					default: 1,
 				},
 			],
 			callback: async (event) => {
-				const sequence = await self.parseVariablesInString(event.options.sequence)
+				const sequence = event.options.sequence
 
 				self.log('debug', `Sequence ${sequence}`)
 
@@ -180,11 +190,11 @@ module.exports = function (self) {
 					type: 'textinput',
 					label: 'Sequence Name',
 					id: 'sequence',
-					default: "Random Strobe",
+					default: 'Random Strobe',
 				},
 			],
 			callback: async (event) => {
-				const sequence = await self.parseVariablesInString(event.options.sequence)
+				const sequence = event.options.sequence
 
 				self.log('debug', `Sequence via name ${sequence}`)
 
@@ -203,11 +213,13 @@ module.exports = function (self) {
 					type: 'number',
 					label: 'Plugin Number',
 					id: 'plugin',
+					min: 1,
+					max: 9999,
 					default: 1,
 				},
 			],
 			callback: async (event) => {
-				const plugin = await self.parseVariablesInString(event.options.plugin)
+				const plugin = event.options.plugin
 
 				self.log('debug', `Plugin via number ${plugin}`)
 
@@ -226,11 +238,11 @@ module.exports = function (self) {
 					type: 'textinput',
 					label: 'Plugin Name',
 					id: 'plugin',
-					default: "Cool Plugin 123",
+					default: 'Cool Plugin 123',
 				},
 			],
 			callback: async (event) => {
-				const plugin = await self.parseVariablesInString(event.options.plugin)
+				const plugin = event.options.plugin
 
 				self.log('debug', `Plugin via name ${plugin}`)
 
@@ -249,11 +261,13 @@ module.exports = function (self) {
 					type: 'number',
 					label: 'Macro Number',
 					id: 'macro',
+					min: 1,
+					max: 9999,
 					default: 1,
 				},
 			],
 			callback: async (event) => {
-				const macro = await self.parseVariablesInString(event.options.macro)
+				const macro = event.options.macro
 
 				self.log('debug', `Macro via number ${macro}`)
 
@@ -272,11 +286,11 @@ module.exports = function (self) {
 					type: 'textinput',
 					label: 'Macro Name',
 					id: 'macro',
-					default: "Cool Macro 456",
+					default: 'Cool Macro 456',
 				},
 			],
 			callback: async (event) => {
-				const macro = await self.parseVariablesInString(event.options.macro)
+				const macro = event.options.macro
 
 				self.log('debug', `Macro via name ${macro}`)
 
@@ -349,7 +363,7 @@ module.exports = function (self) {
 				},
 			],
 			callback: async (event) => {
-				const command = await self.parseVariablesInString(event.options.atmenu)
+				const command = event.options.atmenu
 
 				self.log('debug', `At Menu ${command}`)
 
@@ -372,7 +386,7 @@ module.exports = function (self) {
 				},
 			],
 			callback: async (event) => {
-				const command = await self.parseVariablesInString(event.options.command)
+				const command = event.options.command
 
 				self.log('debug', `Command ${command}`)
 
@@ -389,36 +403,18 @@ module.exports = function (self) {
 			options: [
 				{
 					id: 'page',
-					type: 'dropdown',
+					type: 'number',
 					label: 'Page',
-					default: '1',
-					choices: [
-						{
-							id: '1',
-							label: 'Page 1',
-						},
-						{
-							id: '2',
-							label: 'Page 2',
-						},
-						{
-							id: '3',
-							label: 'Page 3',
-						},
-						{
-							id: '4',
-							label: 'Page 4',
-						},
-						{
-							id: '5',
-							label: 'Page 5',
-						},
-					],
+					min: 1,
+					max: 9999,
+					default: 1,
 				},
 				{
 					id: 'button_number',
 					type: 'number',
 					label: 'Button',
+					min: 1,
+					max: 490,
 					default: 201,
 				},
 				{
@@ -439,9 +435,9 @@ module.exports = function (self) {
 				},
 			],
 			callback: async (event) => {
-				const button_number = await self.parseVariablesInString(event.options.button_number)
-				const button_state = await self.parseVariablesInString(event.options.button_state)
-				const page = await self.parseVariablesInString(event.options.page)
+				const button_number = event.options.button_number
+				const button_state = event.options.button_state
+				const page = event.options.page
 
 				self.log('debug', `Executor Button ${button_number}: ${button_state} on page ${page}`)
 
