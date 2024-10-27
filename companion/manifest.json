@@ -1,7 +1,7 @@
 {
 	"id": "malighting-grandma3",
 	"name": "malighting-grandma3",
-	"shortname": "GrandMA3-ts",
+	"shortname": "GrandMA3",
 	"description": "Control GrandMA3 via OSC",
 	"version": "1.0.3",
 	"license": "MIT",
