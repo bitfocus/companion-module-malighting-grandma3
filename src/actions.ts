@@ -21,12 +21,17 @@ export function UpdateActions(self: ModuleInstance): void {
 					type: 'number',
 					label: 'Quickey Number',
 					id: 'quickey',
+					step: 1,
 					min: 1,
 					max: 9999,
 					default: 1,
 				},
 			],
 			callback: async (event) => {
+				if ((event.options.quickey! as number) % 1 !== 0) {
+					self.log('error', `Quickey Number is not a valid number!`)
+					return
+				}
 				const quickey = event.options.quickey
 
 				self.log('debug', `Quickey via Number ${quickey}`)
@@ -75,6 +80,10 @@ export function UpdateActions(self: ModuleInstance): void {
 				},
 			],
 			callback: async (event) => {
+				if ((event.options.group! as number) % 1 !== 0) {
+					self.log('error', `Group Number is not a valid number!`)
+					return
+				}
 				const group = event.options.group
 
 				self.log('debug', `Group via number ${group}`)
@@ -123,6 +132,10 @@ export function UpdateActions(self: ModuleInstance): void {
 				},
 			],
 			callback: async (event) => {
+				if ((event.options.matrick! as number) % 1 !== 0) {
+					self.log('error', `MAtrick Number is not a valid number!`)
+					return
+				}
 				const matrick = event.options.matrick
 
 				self.log('debug', `MAtrick via number ${matrick}`)
@@ -171,6 +184,10 @@ export function UpdateActions(self: ModuleInstance): void {
 				},
 			],
 			callback: async (event) => {
+				if ((event.options.sequence! as number) % 1 !== 0) {
+					self.log('error', `Sequence Number is not a valid number!`)
+					return
+				}
 				const sequence = event.options.sequence
 
 				self.log('debug', `Sequence ${sequence}`)
@@ -219,6 +236,10 @@ export function UpdateActions(self: ModuleInstance): void {
 				},
 			],
 			callback: async (event) => {
+				if ((event.options.plugin! as number) % 1 !== 0) {
+					self.log('error', `Plugin Number is not a valid number!`)
+					return
+				}
 				const plugin = event.options.plugin
 
 				self.log('debug', `Plugin via number ${plugin}`)
@@ -267,6 +288,10 @@ export function UpdateActions(self: ModuleInstance): void {
 				},
 			],
 			callback: async (event) => {
+				if ((event.options.macro! as number) % 1 !== 0) {
+					self.log('error', `Macro Number is not a valid number!`)
+					return
+				}
 				const macro = event.options.macro
 
 				self.log('debug', `Macro via number ${macro}`)
