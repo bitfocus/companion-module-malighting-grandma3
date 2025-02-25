@@ -408,10 +408,18 @@ export function UpdateActions(self: ModuleInstance): void {
 					label: 'Command',
 					id: 'command',
 					default: 'SelectFixtures Group 1',
+					useVariables: true,
 				},
 			],
 			callback: async (event) => {
-				const command = event.options.command
+				let command = event.options.command
+
+				if (command === undefined) {
+					self.log('error', `Command is not a valid command!`)
+					return
+				}
+
+				command = await self.parseVariablesInString(command.toString())
 
 				self.log('debug', `Command ${command}`)
 
