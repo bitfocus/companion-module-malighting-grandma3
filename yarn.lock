@@ -323,16 +323,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/fs-extra@npm:>=11":
-  version: 11.0.4
-  resolution: "@types/fs-extra@npm:11.0.4"
-  dependencies:
-    "@types/jsonfile": "npm:*"
-    "@types/node": "npm:*"
-  checksum: 10c0/9e34f9b24ea464f3c0b18c3f8a82aefc36dc524cc720fc2b886e5465abc66486ff4e439ea3fb2c0acebf91f6d3f74e514f9983b1f02d4243706bdbb7511796ad
-  languageName: node
-  linkType: hard
-
 "@types/json-schema@npm:*, @types/json-schema@npm:^7.0.15, @types/json-schema@npm:^7.0.9":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
@@ -340,16 +330,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsonfile@npm:*":
-  version: 6.1.4
-  resolution: "@types/jsonfile@npm:6.1.4"
-  dependencies:
-    "@types/node": "npm:*"
-  checksum: 10c0/b12d068b021e4078f6ac4441353965769be87acf15326173e2aea9f3bf8ead41bd0ad29421df5bbeb0123ec3fc02eb0a734481d52903704a1454a1845896b9eb
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:*, @types/node@npm:>=20, @types/node@npm:^22.6.1":
+"@types/node@npm:*, @types/node@npm:^22.6.1":
   version: 22.13.5
   resolution: "@types/node@npm:22.13.5"
   dependencies:
@@ -3129,18 +3110,10 @@ __metadata:
   linkType: hard
 
 "zx@npm:^8.2.4":
-  version: 8.3.2
-  resolution: "zx@npm:8.3.2"
-  dependencies:
-    "@types/fs-extra": "npm:>=11"
-    "@types/node": "npm:>=20"
-  dependenciesMeta:
-    "@types/fs-extra":
-      optional: true
-    "@types/node":
-      optional: true
+  version: 8.8.5
+  resolution: "zx@npm:8.8.5"
   bin:
     zx: build/cli.js
-  checksum: 10c0/50bc4d7c3537c19d7f78df7e42dd17e83d4218c44fd3932a21a8467a221df14f1a9f7debb2dfb9d816ac973456ce182a23544fdf54bd5959358250e3fa4e0877
+  checksum: 10c0/1273e4f72cfe35a59041aef5a56fd87318bc4e11947d101810b67e5c486ab30574042938728e8a15e085de985e762b8585fcdaab4cf87fd113153b63a5846611
   languageName: node
   linkType: hard
