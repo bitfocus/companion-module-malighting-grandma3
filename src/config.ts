@@ -30,7 +30,7 @@ export function GetConfigFields(): SomeCompanionConfigField[] {
 			id: 'prefix',
 			label: 'Console OSC Prefix',
 			width: 12,
-			default: 'gma3',
+			default: '',
 		},
 	]
 }
