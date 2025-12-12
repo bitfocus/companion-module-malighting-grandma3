@@ -441,6 +441,13 @@ export function UpdateActions(self: ModuleInstance): void {
 					min: 1,
 					max: 9999,
 					default: 1,
+					isVisibleExpression: '$(options:current_page)==false',
+				},
+				{
+					id: 'current_page',
+					type: 'checkbox',
+					label: 'Use current page',
+					default: false,
 				},
 				{
 					id: 'button_number',
@@ -470,18 +477,21 @@ export function UpdateActions(self: ModuleInstance): void {
 			callback: async (event) => {
 				const button_number = event.options.button_number
 				const button_state = event.options.button_state
+				const use_current_page = event.options.current_page
 				const page = event.options.page
 
 				self.log('debug', `Executor Button ${button_number}: ${button_state} on page ${page}`)
 
+				const pageVal = use_current_page ? '' : page
+
 				if (button_state === 'push') {
-					sendOscMessage('/Page' + page + '/Key' + button_number, [
+					sendOscMessage('/Page' + pageVal + '/Key' + button_number, [
 						{
 							type: 'T',
 						},
 					])
 				} else {
-					sendOscMessage('/Page' + page + '/Key' + button_number, [
+					sendOscMessage('/Page' + pageVal + '/Key' + button_number, [
 						{
 							type: 'i',
 							value: 0,
