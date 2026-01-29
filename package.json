@@ -22,7 +22,7 @@
 		"@companion-module/base": "~1.14.0"
 	},
 	"devDependencies": {
-		"@companion-module/tools": "^2.4.2",
+		"@companion-module/tools": "^2.6.1",
 		"@types/node": "^22.6.1",
 		"eslint": "^9.36.0",
 		"husky": "^9.1.6",
