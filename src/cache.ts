@@ -22,3 +22,8 @@ export class SimpleCache<T> {
 		this.store.clear()
 	}
 }
+
+export type SequenceActiveState = {
+	seqNumber: number
+	state: number
+}

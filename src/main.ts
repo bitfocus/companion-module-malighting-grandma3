@@ -4,11 +4,12 @@ import { UpgradeScripts } from './upgrades.js'
 import { UpdateActions } from './actions.js'
 import { UpdateFeedbacks } from './feedbacks.js'
 import { Server } from 'node-osc'
+import { SequenceActiveState, SimpleCache } from './cache.js'
 
 export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	config!: ModuleConfig // Setup in init()
 	private oscServer: Server | null = null
-	private deviceState: Record<string, any> = {}
+	seqCache = new SimpleCache()
 
 	constructor(internal: unknown) {
 		super(internal)
@@ -55,15 +56,47 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	handleOSCMessage(address: string, args: any[]) {
-		const value = args[0] // Erster Argument-Wert
+		const gma3Address = address.slice(1, address.length - 2)
+		const gma3ObjectNumber = address.slice(address.lastIndexOf('.') + 1)
 
-		// Zustand intern speichern
-		this.deviceState[address] = value
+		//this.log('debug', `OSC empfangen: ${gma3Address} + ${gma3ObjectNumber}}`)
 
-		this.log('debug', `OSC empfangen: ${address} = ${value}`)
+		switch (gma3Address) {
+			case '14.14.1.6': {
+				const buttonName = args[0]
+				const infos = args[2]
 
-		// Companion: alle Feedbacks neu auswerten
-		this.checkFeedbacks('osc_value_check')
+				let state
+				if (buttonName.includes('Fader')) {
+					state = Number(infos) > 0 ? 1 : 0
+				} else {
+					state = args[1]
+				}
+
+				const seqNumber = Number(gma3ObjectNumber)
+
+				const cacheObject: SequenceActiveState = {
+					seqNumber,
+					state,
+				}
+
+				const prev = this.seqCache.get('sequence_state') as SequenceActiveState
+				const hasChanged = !prev || prev.seqNumber !== cacheObject.seqNumber || prev.state !== cacheObject.state
+
+				if (!hasChanged) {
+					break
+				}
+
+				this.seqCache.set('sequence_state', cacheObject)
+
+				this.log('debug', `State von ${gma3Address} (SEQ) ist jetzt ${state} (Seq: ${seqNumber}})`)
+
+				this.checkFeedbacks('sequence_active')
+				break
+			}
+			default:
+				break
+		}
 	}
 
 	async configUpdated(config: ModuleConfig): Promise<void> {
