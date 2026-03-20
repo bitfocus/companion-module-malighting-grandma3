@@ -1876,6 +1876,7 @@ __metadata:
     eslint: "npm:^9.39.2"
     husky: "npm:^9.1.7"
     lint-staged: "npm:^16.2.7"
+    node-osc: "npm:^11.3.0"
     prettier: "npm:^3.7.4"
     rimraf: "npm:^6.1.2"
     typescript: "npm:~5.9.3"
@@ -1988,6 +1989,13 @@ __metadata:
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: 10c0/c2f5a604a54a8ec5438a342e1f356dff4bc33ccccdb6dc668d94fe8e5eccfc9d2c2eea6064b0967a767ba63b33763f51ccf2cd2441b461a7322656c1f06b3f5d
+  languageName: node
+  linkType: hard
+
+"node-osc@npm:^11.3.0":
+  version: 11.3.0
+  resolution: "node-osc@npm:11.3.0"
+  checksum: 10c0/252c7d1f2cbfe485d0cbe8604720c12ee915650ae79ffbc7b52f4ecc12b98fca545d437ffa450eed83ff39fef2483893666500118c61234a05c561a47db5eab9
   languageName: node
   linkType: hard
 

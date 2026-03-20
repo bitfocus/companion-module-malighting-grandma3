@@ -19,7 +19,8 @@
 		"url": "git+https://github.com/bitfocus/companion-module-malighting-grandma3.git"
 	},
 	"dependencies": {
-		"@companion-module/base": "~1.14.1"
+		"@companion-module/base": "~1.14.1",
+		"node-osc": "^11.3.0"
 	},
 	"devDependencies": {
 		"@companion-module/tools": "^2.6.1",
