@@ -4,6 +4,7 @@ export interface ModuleConfig {
 	host: string
 	port: number
 	prefix: string
+	feedbackPort: string
 }
 
 export function GetConfigFields(): SomeCompanionConfigField[] {
@@ -31,6 +32,14 @@ export function GetConfigFields(): SomeCompanionConfigField[] {
 			label: 'Console OSC Prefix',
 			width: 12,
 			default: '',
+		},
+		{
+			type: 'textinput',
+			id: 'feedbackPort',
+			label: 'Console OSC Feedback Port',
+			width: 12,
+			default: '8091',
+			regex: Regex.PORT,
 		},
 	]
 }
