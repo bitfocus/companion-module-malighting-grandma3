@@ -2,6 +2,7 @@ import { InstanceBase, runEntrypoint, InstanceStatus, SomeCompanionConfigField }
 import { GetConfigFields, type ModuleConfig } from './config.js'
 import { UpgradeScripts } from './upgrades.js'
 import { UpdateActions } from './actions.js'
+import { UpdateFeedbacks } from './feedbacks.js'
 
 export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	config!: ModuleConfig // Setup in init()
@@ -33,6 +34,10 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 	updateActions(): void {
 		UpdateActions(this)
+	}
+
+	updateFeedbacks(): void {
+		UpdateFeedbacks(this)
 	}
 }
 
