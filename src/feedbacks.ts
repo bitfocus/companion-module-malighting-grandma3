@@ -5,7 +5,7 @@ export function UpdateFeedbacks(self: ModuleInstance): void {
 	self.setFeedbackDefinitions({
 		sequence_active: {
 			type: 'boolean' as const,
-			name: 'Check if Sequence is active',
+			name: 'Check if sequence is active',
 			defaultStyle: {
 				bgcolor: 0x00ff00,
 				color: 0x000000,
@@ -26,7 +26,7 @@ export function UpdateFeedbacks(self: ModuleInstance): void {
 				const currentValue = self.seqCache.get('sequence_state') as SequenceActiveState
 				const sequence_number = feedback.options.sequence_number as string
 
-				self.log('debug', `Feedback check: state=${currentValue.state}, sequence_number=${sequence_number}`)
+				self.log('debug', `Feedback check: state=${currentValue.state}, sequence number=${sequence_number}`)
 
 				// Vergleich als String (funktioniert für Zahlen & Text)
 				return Number(sequence_number) === currentValue.seqNumber && currentValue.state === 1
