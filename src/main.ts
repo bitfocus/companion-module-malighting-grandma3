@@ -64,9 +64,9 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 		if (uncleanedGma3Address.includes('/')) {
 			this.log('debug', `OSC address contains prefix: ${uncleanedGma3Address}`)
-			const splitter = uncleanedGma3Address.split('/') // "test/14.14..."
-			const prefix = splitter[0]
-			gma3Address = splitter[1]
+			const splitter = uncleanedGma3Address.split('/') // "/test/14.14..."
+			const prefix = splitter[1]
+			gma3Address = splitter[2]
 
 			//only check prefix if anything is set in the config
 			if (this.config.outputPrefix && prefix !== this.config.outputPrefix) {
