@@ -68,7 +68,7 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 				let state
 				if (buttonName.includes('Fader')) {
-					state = Number(infos) > 0 ? 1 : 0
+					state = Number(infos) > 0 ? 1 : 0 // fader bugfix as long as ma has not fixed it, tbr in future
 				} else {
 					state = args[1]
 				}
