@@ -16,7 +16,7 @@ export function GetConfigFields(): SomeCompanionConfigField[] {
 			width: 12,
 			label: 'Information',
 			value:
-				'This module uses OSC in grandMA3. For more information please visit <a href="https://help.malighting.com/grandMA3/2.3/HTML/remote_inputs_osc.html" target="_blank">this link</a>.<br>The input port is the port that gMA3 will receive the data from companion and the output port is where it will send the data to companion.',
+				'This module uses OSC in grandMA3. For more information please visit <a href="https://help.malighting.com/grandMA3/2.3/HTML/remote_inputs_osc.html" target="_blank">this link</a>.<br>The input port is the port that gMA3 will receive the data from companion and the output port is where it will send the data to companion.<br><b>Important:</b>Prefixes are only being considered if they are set, if not, any message gets through.',
 		},
 		{
 			type: 'textinput',
