@@ -56,7 +56,7 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	handleOSCMessage(address: string, args: any[]) {
-		const uncleanedGma3Address = address.slice(1, address.length - 2)
+		const uncleanedGma3Address = address.slice(0, address.lastIndexOf('.'))
 		const gma3ObjectNumber = address.slice(address.lastIndexOf('.') + 1)
 		this.log('debug', `OSC received: ${uncleanedGma3Address} + ${gma3ObjectNumber}}`)
 
