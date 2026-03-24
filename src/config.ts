@@ -3,7 +3,8 @@ import { Regex, type SomeCompanionConfigField } from '@companion-module/base'
 export interface ModuleConfig {
 	host: string
 	port: number
-	prefix: string
+	inputPrefix: string
+	outputPrefix: string
 	feedbackPort: string
 }
 
@@ -35,7 +36,7 @@ export function GetConfigFields(): SomeCompanionConfigField[] {
 		},
 		{
 			type: 'textinput',
-			id: 'prefix',
+			id: 'inputPrefix',
 			label: 'gMA3 Input Prefix',
 			width: 6,
 			default: '',
@@ -47,6 +48,13 @@ export function GetConfigFields(): SomeCompanionConfigField[] {
 			width: 6,
 			default: '8091',
 			regex: Regex.PORT,
+		},
+		{
+			type: 'textinput',
+			id: 'outputPrefix',
+			label: 'gMA3 Output Prefix',
+			width: 6,
+			default: '',
 		},
 	]
 }
