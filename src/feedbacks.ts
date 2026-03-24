@@ -5,7 +5,7 @@ export function UpdateFeedbacks(self: ModuleInstance): void {
 	self.setFeedbackDefinitions({
 		sequence_active: {
 			type: 'boolean' as const,
-			name: 'Check if sequence is active',
+			name: 'Check if a sequence is active',
 			defaultStyle: {
 				bgcolor: 0x00ff00,
 				color: 0x000000,
