@@ -25,7 +25,7 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	}
 	// When module gets deleted
 	async destroy(): Promise<void> {
-		this.log('debug', 'destroy')
+		this.log('debug', 'Module destroyed')
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -37,7 +37,7 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 		}
 
 		this.oscServer = new Server(Number(config.feedbackPort), '0.0.0.0', () => {
-			this.log('info', `OSC Server lauscht auf Port ${config.feedbackPort}`)
+			this.log('info', `OSC server listening on port ${config.feedbackPort}`)
 		})
 
 		this.oscServer.on('message', (msg: any[]) => {
@@ -49,7 +49,7 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 		})
 
 		this.oscServer.on('error', (err: Error) => {
-			this.log('error', `OSC Fehler: ${err.message}`)
+			this.log('error', `OSC error: ${err.message}`)
 			this.updateStatus(InstanceStatus.ConnectionFailure, err.message)
 		})
 	}
@@ -58,22 +58,19 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	handleOSCMessage(address: string, args: any[]) {
 		const uncleanedGma3Address = address.slice(1, address.length - 2)
 		const gma3ObjectNumber = address.slice(address.lastIndexOf('.') + 1)
-		this.log('debug', `OSC empfangen: ${uncleanedGma3Address} + ${gma3ObjectNumber}}`)
+		this.log('debug', `OSC received: ${uncleanedGma3Address} + ${gma3ObjectNumber}}`)
 
 		let gma3Address
 
 		if (uncleanedGma3Address.includes('/')) {
-			this.log('debug', `OSC Adresse enthält Prefix: ${uncleanedGma3Address}`)
+			this.log('debug', `OSC address contains prefix: ${uncleanedGma3Address}`)
 			const splitter = uncleanedGma3Address.split('/') // "test/14.14..."
 			const prefix = splitter[0]
 			gma3Address = splitter[1]
 
 			//only check prefix if anything is set in the config
 			if (this.config.outputPrefix && prefix !== this.config.outputPrefix) {
-				this.log(
-					'debug',
-					`OSC Nachricht mit ungültigem Prefix empfangen: ${prefix} (erwartet: ${this.config.outputPrefix})`,
-				)
+				this.log('debug', `OSC message with invalid prefix received: ${prefix} (expected: ${this.config.outputPrefix})`)
 				return
 			}
 		}
@@ -106,7 +103,7 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 				this.seqCache.set('sequence_state', cacheObject)
 
-				this.log('debug', `State von ${gma3Address} (SEQ) ist jetzt ${state} (Seq: ${seqNumber}})`)
+				this.log('debug', `State of ${gma3Address} (SEQ) is now ${state} (Seq: ${seqNumber}})`)
 
 				this.checkFeedbacks('sequence_active')
 				break

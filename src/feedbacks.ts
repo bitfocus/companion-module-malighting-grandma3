@@ -26,7 +26,7 @@ export function UpdateFeedbacks(self: ModuleInstance): void {
 				const currentValue = self.seqCache.get('sequence_state') as SequenceActiveState
 				const sequence_number = feedback.options.sequence_number as string
 
-				self.log('debug', `Feedback check: state=${currentValue.state}, sequence number=${sequence_number}`)
+				self.log('debug', `Feedback sequence_active: state=${currentValue.state}, number=${sequence_number}`)
 
 				// Vergleich als String (funktioniert für Zahlen & Text)
 				return Number(sequence_number) === currentValue.seqNumber && currentValue.state === 1

@@ -2,13 +2,13 @@ import type { ModuleInstance } from './main.js'
 
 export function UpdateActions(self: ModuleInstance): void {
 	const sendOscMessage = (path: any, args: any) => {
-		self.log('debug', `Sending OSC ${self.config.host}:${self.config.port} ${path}`)
-		self.log('debug', `Sending Args ${JSON.stringify(args)}`)
+		self.log('debug', `OSC: Sending to ${self.config.host}:${self.config.port} ${path}`)
+		self.log('debug', `OSC: Sending args ${JSON.stringify(args)}`)
 
 		let customPath = path
 		if (self.config.inputPrefix) {
 			customPath = '/' + self.config.inputPrefix + path
-			self.log('debug', `Sending Custom Path ${customPath}`)
+			self.log('debug', `OSC: Using custom path ${customPath}`)
 		}
 		self.oscSend(self.config.host, self.config.port, customPath, args)
 	}
@@ -29,12 +29,12 @@ export function UpdateActions(self: ModuleInstance): void {
 			],
 			callback: async (event) => {
 				if ((event.options.quickey! as number) % 1 !== 0) {
-					self.log('error', `Quickey Number is not a valid number!`)
+					self.log('error', `Quickey: Invalid number`)
 					return
 				}
 				const quickey = event.options.quickey
 
-				self.log('debug', `Quickey via Number ${quickey}`)
+				self.log('debug', `Quickey: Trigger by number ${quickey}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -57,7 +57,7 @@ export function UpdateActions(self: ModuleInstance): void {
 			callback: async (event) => {
 				const quickey = event.options.quickey
 
-				self.log('debug', `Quickey via Name ${quickey}`)
+				self.log('debug', `Quickey: Trigger by name ${quickey}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -81,12 +81,12 @@ export function UpdateActions(self: ModuleInstance): void {
 			],
 			callback: async (event) => {
 				if ((event.options.group! as number) % 1 !== 0) {
-					self.log('error', `Group Number is not a valid number!`)
+					self.log('error', `Group: Invalid number`)
 					return
 				}
 				const group = event.options.group
 
-				self.log('debug', `Group via number ${group}`)
+				self.log('debug', `Group: Select by number ${group}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -109,7 +109,7 @@ export function UpdateActions(self: ModuleInstance): void {
 			callback: async (event) => {
 				const group = event.options.group
 
-				self.log('debug', `Group via name ${group}`)
+				self.log('debug', `Group: Select by name ${group}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -133,12 +133,12 @@ export function UpdateActions(self: ModuleInstance): void {
 			],
 			callback: async (event) => {
 				if ((event.options.matrick! as number) % 1 !== 0) {
-					self.log('error', `MAtrick Number is not a valid number!`)
+					self.log('error', `MAtrick: Invalid number`)
 					return
 				}
 				const matrick = event.options.matrick
 
-				self.log('debug', `MAtrick via number ${matrick}`)
+				self.log('debug', `MAtrick: Select by number ${matrick}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -161,7 +161,7 @@ export function UpdateActions(self: ModuleInstance): void {
 			callback: async (event) => {
 				const matrick = event.options.matrick
 
-				self.log('debug', `MAtrick via name ${matrick}`)
+				self.log('debug', `MAtrick: Select by name ${matrick}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -185,12 +185,12 @@ export function UpdateActions(self: ModuleInstance): void {
 			],
 			callback: async (event) => {
 				if ((event.options.sequence! as number) % 1 !== 0) {
-					self.log('error', `Sequence Number is not a valid number!`)
+					self.log('error', `Sequence: Invalid number`)
 					return
 				}
 				const sequence = event.options.sequence
 
-				self.log('debug', `Sequence ${sequence}`)
+				self.log('debug', `Sequence: Select by number ${sequence}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -213,7 +213,7 @@ export function UpdateActions(self: ModuleInstance): void {
 			callback: async (event) => {
 				const sequence = event.options.sequence
 
-				self.log('debug', `Sequence via name ${sequence}`)
+				self.log('debug', `Sequence: Select by name ${sequence}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -237,12 +237,12 @@ export function UpdateActions(self: ModuleInstance): void {
 			],
 			callback: async (event) => {
 				if ((event.options.plugin! as number) % 1 !== 0) {
-					self.log('error', `Plugin Number is not a valid number!`)
+					self.log('error', `Plugin: Invalid number`)
 					return
 				}
 				const plugin = event.options.plugin
 
-				self.log('debug', `Plugin via number ${plugin}`)
+				self.log('debug', `Plugin: Call by number ${plugin}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -265,7 +265,7 @@ export function UpdateActions(self: ModuleInstance): void {
 			callback: async (event) => {
 				const plugin = event.options.plugin
 
-				self.log('debug', `Plugin via name ${plugin}`)
+				self.log('debug', `Plugin: Call by name ${plugin}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -289,12 +289,12 @@ export function UpdateActions(self: ModuleInstance): void {
 			],
 			callback: async (event) => {
 				if ((event.options.macro! as number) % 1 !== 0) {
-					self.log('error', `Macro Number is not a valid number!`)
+					self.log('error', `Macro: Invalid number`)
 					return
 				}
 				const macro = event.options.macro
 
-				self.log('debug', `Macro via number ${macro}`)
+				self.log('debug', `Macro: Call by number ${macro}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -317,7 +317,7 @@ export function UpdateActions(self: ModuleInstance): void {
 			callback: async (event) => {
 				const macro = event.options.macro
 
-				self.log('debug', `Macro via name ${macro}`)
+				self.log('debug', `Macro: Call by name ${macro}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -390,7 +390,7 @@ export function UpdateActions(self: ModuleInstance): void {
 			callback: async (event) => {
 				const command = event.options.atmenu
 
-				self.log('debug', `At Menu ${command}`)
+				self.log('debug', `Menu: Execute ${command}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -415,13 +415,13 @@ export function UpdateActions(self: ModuleInstance): void {
 				let command = event.options.command
 
 				if (command === undefined) {
-					self.log('error', `Command is not a valid command!`)
+					self.log('error', `Command: Invalid command`)
 					return
 				}
 
 				command = await self.parseVariablesInString(command.toString())
 
-				self.log('debug', `Command ${command}`)
+				self.log('debug', `Command: Execute ${command}`)
 
 				sendOscMessage('/cmd', [
 					{
@@ -480,7 +480,7 @@ export function UpdateActions(self: ModuleInstance): void {
 				const use_current_page = event.options.current_page
 				const page = event.options.page
 
-				self.log('debug', `Executor Button ${button_number}: ${button_state} on page ${page}`)
+				self.log('debug', `Executor: Button ${button_number} ${button_state} on page ${page}`)
 
 				const pageVal = use_current_page ? '' : page
 
