@@ -59,7 +59,7 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 		const gma3Address = address.slice(1, address.length - 2)
 		const gma3ObjectNumber = address.slice(address.lastIndexOf('.') + 1)
 
-		//this.log('debug', `OSC empfangen: ${gma3Address} + ${gma3ObjectNumber}}`)
+		this.log('debug', `OSC empfangen: ${gma3Address} + ${gma3ObjectNumber}}`)
 
 		switch (gma3Address) {
 			case '14.14.1.6': {
