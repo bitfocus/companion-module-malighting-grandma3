@@ -56,10 +56,27 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	handleOSCMessage(address: string, args: any[]) {
-		const gma3Address = address.slice(1, address.length - 2)
+		const uncleanedGma3Address = address.slice(1, address.length - 2)
 		const gma3ObjectNumber = address.slice(address.lastIndexOf('.') + 1)
+		this.log('debug', `OSC empfangen: ${uncleanedGma3Address} + ${gma3ObjectNumber}}`)
 
-		this.log('debug', `OSC empfangen: ${gma3Address} + ${gma3ObjectNumber}}`)
+		let gma3Address
+
+		if (uncleanedGma3Address.includes('/')) {
+			this.log('debug', `OSC Adresse enthält Prefix: ${uncleanedGma3Address}`)
+			const splitter = uncleanedGma3Address.split('/') // "test/14.14..."
+			const prefix = splitter[0]
+			gma3Address = splitter[1]
+
+			//only check prefix if anything is set in the config
+			if (this.config.outputPrefix && prefix !== this.config.outputPrefix) {
+				this.log(
+					'debug',
+					`OSC Nachricht mit ungültigem Prefix empfangen: ${prefix} (erwartet: ${this.config.outputPrefix})`,
+				)
+				return
+			}
+		}
 
 		switch (gma3Address) {
 			case '14.14.1.6': {
