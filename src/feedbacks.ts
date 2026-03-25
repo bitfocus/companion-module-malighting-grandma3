@@ -23,13 +23,21 @@ export function UpdateFeedbacks(self: ModuleInstance): void {
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-expect-error
 			callback: (feedback) => {
-				const currentValue = self.seqCache.get('sequence_state') as SequenceActiveState
+				const sequences = self.seqCache.get('sequence_state') as SequenceActiveState[]
 				const sequence_number = feedback.options.sequence_number as string
 
-				self.log('debug', `Feedback sequence_active: state=${currentValue.state}, number=${sequence_number}`)
+				if (!sequences || sequences.length === 0) {
+					return false
+				}
 
-				// Vergleich als String (funktioniert für Zahlen & Text)
-				return Number(sequence_number) === currentValue.seqNumber && currentValue.state === 1
+				const matchingSeq = sequences.find((seq) => seq.seqNumber === Number(sequence_number))
+
+				self.log(
+					'debug',
+					`Feedback sequence_active: found=${!!matchingSeq}, state=${matchingSeq?.state}, number=${sequence_number}`,
+				)
+
+				return !!matchingSeq && matchingSeq.state === 1
 			},
 		},
 	})

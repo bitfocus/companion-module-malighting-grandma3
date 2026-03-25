@@ -89,19 +89,26 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 				const seqNumber = Number(gma3ObjectNumber)
 
-				const cacheObject: SequenceActiveState = {
-					seqNumber,
-					state,
+				let sequences = this.seqCache.get('sequence_state') as SequenceActiveState[]
+				if (!sequences) {
+					sequences = []
 				}
 
-				const prev = this.seqCache.get('sequence_state') as SequenceActiveState
-				const hasChanged = !prev || prev.seqNumber !== cacheObject.seqNumber || prev.state !== cacheObject.state
+				const existingIndex = sequences.findIndex((seq) => seq.seqNumber === seqNumber)
+				const prevState = existingIndex >= 0 ? sequences[existingIndex] : null
+				const hasChanged = !prevState || prevState.state !== state
 
 				if (!hasChanged) {
 					break
 				}
 
-				this.seqCache.set('sequence_state', cacheObject)
+				if (existingIndex >= 0) {
+					sequences[existingIndex] = { seqNumber, state }
+				} else {
+					sequences.push({ seqNumber, state })
+				}
+
+				this.seqCache.set('sequence_state', sequences)
 
 				this.log('debug', `State of ${gma3Address} (SEQ) is now ${state} (Seq: ${seqNumber}})`)
 
