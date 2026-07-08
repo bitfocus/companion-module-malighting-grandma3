@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<GMA3 DataVersion="2.2.5.2">
+    <UserPlugin Name="CommandWing-QuickeyCreator-v2_0_0_7" Guid="92 40 11 8F 09 62 D0 17 14 DA 06 63 B2 77 43 4B" Author="Luca Heß (@einlichtvogel)" Version="2.0.0.7" Path="CommandWing-QuickeyCreator-v2.0.0.7">
+        <ComponentLua Name="Script" Guid="92 40 11 8F A3 DC 72 6D 7E E7 D7 6C CB E0 8F 4B" FileName="Script.lua" />
+    </UserPlugin>
+</GMA3>

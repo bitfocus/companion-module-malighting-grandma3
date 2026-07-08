@@ -16,12 +16,16 @@ export function GetConfigFields(): SomeCompanionConfigField[] {
 			width: 12,
 			label: 'Information',
 			value:
-				'This module uses OSC in grandMA3. For more information please visit <a href="https://help.malighting.com/grandMA3/2.3/HTML/remote_inputs_osc.html" target="_blank">this link</a>.<br>The input port is the port that gMA3 will receive the data from companion and the output port is where it will send the data to companion.<br><b>Important:</b>Prefixes are only being considered if they are set, if not, any message gets through.',
+				'This module uses OSC in grandMA3. For more information please visit <a href="https://help.malighting.com/grandMA3/2.3/HTML/remote_inputs_osc.html" target="_blank">this link</a>.<br>' +
+				'<br>Here is an short explanaiton for the configuration fields below:' +
+				'<br>- gMA3 Input Port / Prefix = Companion -> gMA3' +
+				'<br>- gMA3 Output Port / Prefix = gMA3 -> Companion<br>' +
+				'<br><b>Important:</b> Prefixes are only being considered if they are set, if not, any message gets through.',
 		},
 		{
 			type: 'textinput',
 			id: 'host',
-			label: 'Console IP',
+			label: 'grandMA3 Console IP',
 			width: 6,
 			regex: Regex.IP,
 			default: '127.0.0.1',
@@ -29,7 +33,7 @@ export function GetConfigFields(): SomeCompanionConfigField[] {
 		{
 			type: 'textinput',
 			id: 'port',
-			label: 'gMA3 Input Port',
+			label: 'grandMA3 Input Port',
 			width: 6,
 			regex: Regex.PORT,
 			default: '8081',
@@ -37,22 +41,22 @@ export function GetConfigFields(): SomeCompanionConfigField[] {
 		{
 			type: 'textinput',
 			id: 'inputPrefix',
-			label: 'gMA3 Input Prefix',
+			label: 'grandMA3 Input Prefix',
 			width: 6,
 			default: '',
 		},
 		{
 			type: 'textinput',
 			id: 'feedbackPort',
-			label: 'gMA3 Output Port',
+			label: 'grandMA3 Output Port',
 			width: 6,
-			default: '8091',
+			default: '8082',
 			regex: Regex.PORT,
 		},
 		{
 			type: 'textinput',
 			id: 'outputPrefix',
-			label: 'gMA3 Output Prefix',
+			label: 'grandMA3 Output Prefix',
 			width: 6,
 			default: '',
 		},
