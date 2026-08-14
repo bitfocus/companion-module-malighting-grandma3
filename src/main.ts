@@ -18,7 +18,7 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	async init(config: ModuleConfig): Promise<void> {
 		this.config = config
 
-		this.updateStatus(InstanceStatus.Ok)
+		this.updateStatus(InstanceStatus.Connecting)
 		await this.initOSC(config)
 		this.updateActions()
 		this.updateFeedbacks()
@@ -46,6 +46,7 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 		}
 
 		this.oscServer = new Server(Number(config.feedbackPort), '0.0.0.0', () => {
+			this.updateStatus(InstanceStatus.Ok)
 			this.log('info', `OSC server listening on port ${config.feedbackPort}`)
 		})
 
