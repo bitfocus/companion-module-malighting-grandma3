@@ -131,6 +131,9 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 	async configUpdated(config: ModuleConfig): Promise<void> {
 		this.config = config
+		await this.initOSC(config)
+		this.updateActions()
+		this.updateFeedbacks()
 	}
 
 	// Return config fields for web config
