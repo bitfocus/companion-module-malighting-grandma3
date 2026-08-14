@@ -25,6 +25,15 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	}
 	// When module gets deleted
 	async destroy(): Promise<void> {
+		if (this.oscServer) {
+			try {
+				await this.oscServer.close()
+			} catch (e) {
+				this.log('debug', `OSC close failed: ${e instanceof Error ? e.message : String(e)}`)
+			}
+			this.oscServer = null
+		}
+		this.seqCache.clear()
 		this.log('debug', 'Module destroyed')
 	}
 
