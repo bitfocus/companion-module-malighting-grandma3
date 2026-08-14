@@ -4,7 +4,7 @@ import { SequenceActiveState } from './cache.js'
 export function UpdateFeedbacks(self: ModuleInstance): void {
 	self.setFeedbackDefinitions({
 		sequence_active: {
-			type: 'boolean' as const,
+			type: 'boolean',
 			name: 'Check if a sequence is active',
 			defaultStyle: {
 				bgcolor: 0x00ff00,
@@ -20,8 +20,6 @@ export function UpdateFeedbacks(self: ModuleInstance): void {
 					default: 1,
 				},
 			],
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-expect-error
 			callback: (feedback) => {
 				const sequences = self.seqCache.get('sequence_state') as SequenceActiveState[]
 				const sequence_number = feedback.options.sequence_number as string
