@@ -1,6 +1,6 @@
 {
 	"name": "malighting-grandma3",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"main": "dist/main.js",
 	"type": "module",
 	"scripts": {
