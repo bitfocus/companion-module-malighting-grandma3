@@ -42,5 +42,9 @@
 			"yarn lint:raw --fix"
 		]
 	},
-	"packageManager": "yarn@4.13.0"
+	"packageManager": "yarn@4.13.0",
+	"engines": {
+		"node": "^22.20",
+		"yarn": "^4"
+	}
 }
