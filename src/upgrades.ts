@@ -30,8 +30,40 @@ function updateExecButtonPageFromDropdownToInteger(
 	return result
 }
 
+function migratePrefixAndPorts(
+	_context: CompanionUpgradeContext<ModuleConfig>,
+	props: CompanionStaticUpgradeProps<ModuleConfig>,
+): CompanionStaticUpgradeResult<ModuleConfig> {
+	const result: CompanionStaticUpgradeResult<ModuleConfig> = {
+		updatedActions: [],
+		updatedConfig: null,
+		updatedFeedbacks: [],
+	}
+	const cfg = props.config as (ModuleConfig & { prefix?: string }) | null
+	if (!cfg) return result
+
+	let changed = false
+	if (cfg.inputPrefix === undefined) {
+		cfg.inputPrefix = cfg.prefix ?? ''
+		delete cfg.prefix
+		changed = true
+	}
+	if (cfg.outputPrefix === undefined) {
+		cfg.outputPrefix = ''
+		changed = true
+	}
+	if (cfg.feedbackPort === undefined) {
+		cfg.feedbackPort = '8082'
+		changed = true
+	}
+
+	if (changed) result.updatedConfig = cfg
+	return result
+}
+
 export const UpgradeScripts: CompanionStaticUpgradeScript<ModuleConfig>[] = [
 	updateExecButtonPageFromDropdownToInteger,
+	migratePrefixAndPorts,
 	/*
 	 * Place your upgrade scripts here
 	 * Remember that once it has been added it cannot be removed!
