@@ -9,7 +9,7 @@ import { SequenceActiveState, SimpleCache } from './cache.js'
 export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	config!: ModuleConfig // Setup in init()
 	private oscServer: Server | null = null
-	seqCache = new SimpleCache()
+	private seqCache = new SimpleCache<SequenceActiveState[]>()
 
 	constructor(internal: unknown) {
 		super(internal)
@@ -18,6 +18,7 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	async init(config: ModuleConfig): Promise<void> {
 		this.config = config
 
+		this.seqCache = new SimpleCache<SequenceActiveState[]>()
 		this.updateStatus(InstanceStatus.Connecting)
 		await this.initOSC(config)
 		this.updateActions()
@@ -39,7 +40,6 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	async initOSC(config: ModuleConfig) {
-		// Alten Server zuerst schließen
 		if (this.oscServer) {
 			await this.oscServer.close()
 			this.oscServer = null
