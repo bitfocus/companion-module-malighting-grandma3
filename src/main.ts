@@ -9,7 +9,7 @@ import { SequenceActiveState, SimpleCache } from './cache.js'
 export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	config!: ModuleConfig // Setup in init()
 	private oscServer: Server | null = null
-	private seqCache = new SimpleCache<SequenceActiveState[]>()
+	seqCache = new SimpleCache<SequenceActiveState[]>()
 
 	constructor(internal: unknown) {
 		super(internal)
